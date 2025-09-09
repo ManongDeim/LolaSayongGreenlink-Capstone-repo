@@ -43,10 +43,10 @@ startInput.addEventListener('change', function() {
 
 
 // For Event Reservation
-document.getElementById("eventBookingForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+async function sendReservation(){
+  let formE1 = document.getElementById("eventBookingForm");
 
-    let form = new FormData(this);
+    let form = new FormData(formE1);
 
     try {
         let response = await fetch("http://127.0.0.1:8000/api/eventReservation", {
@@ -60,13 +60,29 @@ document.getElementById("eventBookingForm").addEventListener("submit", async fun
 
         let result = await response.json();
 
-        document.getElementById("response").innerText = result.message;
+        showAlert("✅ " + result.message + " (" + paymentMethod + ")");
+
         console.log("Success:", result);
+
+        //Clear form after success
+        formE1.reset();
+
+        //Close modal after success
+        closePaymentModal();
 
     } catch (error) {
         console.error("Error:", error);
-        document.getElementById("response").innerText = "Error: " + error.message;
+        showAlert("❌ An error occurred. Please try again." + error.message);
     }
+
+}
+
+   document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("confirmBtn").addEventListener("click", () => {
+        console.log("Confirm clicked"); 
+        sendReservation();
+    });
+
 });
 
 //Modals
@@ -85,8 +101,46 @@ document.getElementById("eventBookingForm").addEventListener("submit", async fun
       document.getElementById('orderModal').classList.add('hidden');
     }
 
-    function openPaymentModal() {
-      document.getElementById('paymentModal').classList.remove('hidden');
+    function closeOrderModal() {
+      document.getElementById('orderModal').classList.add('hidden');
+    }
+
+    function openConfirmationModal() {
+
+    const form = document.getElementById("eventBookingForm");
+
+    const start_date = form.querySelector("input[name='start_date']").value;
+    const end_date = form.querySelector("input[name='end_date']").value;
+    const fullName = form.querySelector("input[name='full_name']").value;
+    const event_type = form.querySelector("select[name='event_type']").value;
+    const pax = form.querySelector("input[name='pax']").value;
+    const email = form.querySelector("input[name='email']").value;
+    const phone = form.querySelector("input[name='phone_number']").value;
+    const to_bring = form.querySelector("textarea[name='to_bring']").value;
+
+    // Build summary HTML 
+    const summaryHtml = `
+    <p><strong>Check-In:</strong> ${start_date}</p>
+    <p><strong>Check-Out:</strong> ${end_date}</p>
+    <p><strong>Full Name:</strong> ${fullName}</p>
+    <p><strong>Event Type:</strong> ${event_type}</p>
+    <p><strong>Pax:</strong> ${pax}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Phone:</strong> ${phone}</p>
+    <p><strong>Thing to be brought:</strong> ${to_bring}</p>
+    `;
+
+      // Insert into modal
+      document.getElementById("confirmationSummary").innerHTML = summaryHtml;
+
+      // Open modal
+      document.getElementById('confirmationModal').classList.remove('hidden');
+       document.body.style.overflow = 'hidden';
+    }
+
+     function closePaymentModal() {
+      document.getElementById('confirmationModal').classList.add('hidden');
+       document.body.style.overflow = '';
     }
 
 
