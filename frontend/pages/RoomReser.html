@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../output.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white">
+    <!--Header-->
+    <header class="flex items-center justify-between px-6 py-8 h-[150px] bg-white shadow relative z-10"> 
+      <nav class="flex gap-20 items-right text-3xl">
+          <a href="/frontend/index.html" class="pl-10 text-gray-700 hover:text-teal-600 font-medium">Home</a>
+          <a onclick="openReserModal()" class="text-gray-700 hover:text-teal-600 font-medium">Booking</a>
+          <a onclick="openOrderModal()" class="text-gray-700 hover:text-teal-600 font-medium">Order</a>
+      </nav>
+
+      <div class="absolute left-1/2 transform -translate-x-1/2">
+          <img src="../src/Pictures/lolasayongGreenLink-removebg-preview.png" alt="Logo" class="h-[230px] w-auto">
+      </div>
+      <div class="w-[120px]"></div>
+    </header class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center px-4">
+
+    <!-- Booking Form -->
+<form id="roomBookingForm">
+
+  <!-- Rooms Title -->
+  <section class="px-6 mt-8">
+    <h1 class="text-4xl font-medium text-center mb-6">Rooms</h1>
+    <p class="text-2xl font-light">Available Room:</p>
+
+    <!-- Paragraph + hidden input -->
+    <p id="roomName" class="pl-2 text-3xl font-medium">Villa Victoria</p>
+    <input type="hidden" id="roomInput"  name="room">
+
+    <p class="pl-2 text-3xl font-medium text-gray-800">₱700/night</p>
+  </section>
+
+  <!-- Room Images & Dates -->
+  <section class="px-6 mt-6 items-center">
+    <div class="flex gap-2 items-center justify-center">
+      <img class="h-[500px] object-cover rounded-lg" src="../src/Pictures/VillaVictoria1.jpg" alt="Room Image">
+      <img class="h-[500px] object-cover rounded-lg" src="../src/Pictures/VillaVictoria2.jpg" alt="Room Image">
+      <img class="h-[500px] object-cover rounded-lg" src="../src/Pictures/VillaVictoria3.jpg" alt="Room Image">
+    </div>
+
+    <!-- Calendar -->
+    <div class="flex justify-center mt-6">
+      <div class="flex gap-4 p-6 rounded-lg shadow-lg bg-white">
+        <!-- Check-In -->
+        <div class="relative">
+          <input type="date" name="check_in_date" id="checkIn" class="peer w-48 border rounded-lg px-4 pt-5 pb-2 text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+          <label for="check_in_date" class="absolute left-4 top-2 text-gray-500 text-sm pointer-events-none">Check-In</label>
+        </div>
+        <!-- Check-Out -->
+        <div class="relative">
+          <input type="date" name="check_out_date" id="checkOut" class="peer w-48 border rounded-lg px-4 pt-5 pb-2 text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+          <label for="check_out_date" class="absolute left-4 top-2 text-gray-500 text-sm pointer-events-none">Check-Out</label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Amenities (not needed for DB, so kept outside inputs) -->
+  <section class="px-6 mt-8">
+    <h2 class="text-2xl font-semibold mb-4">Amenities</h2>
+    <div class="border rounded-lg p-6 shadow-sm bg-white">
+      <ul class="space-y-3 text-gray-700">
+        <li class="flex items-center gap-3"><span class="text-teal-600 text-lg">✔</span>Good for 2 pax, fan-only room for a cool and relaxing stay.</li>
+        <li class="flex items-center gap-3"><span class="text-teal-600 text-lg">✔</span>Equipped with an electric fan for added comfort.</li>
+        <li class="flex items-center gap-3"><span class="text-teal-600 text-lg">✔</span>Enjoy fresh night breeze with a relaxing view of the ocean.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Booking Info -->
+  <section class="px-6 mt-8 mb-12">
+    <h2 class="text-2xl font-semibold mb-4 text-center">Booking Info</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Full Name -->
+      <div class="relative">
+        <input type="text" name="full_name" placeholder=" " class="peer w-full border rounded-lg px-4 pt-5 pb-2 text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+        <label for="full_name" class="absolute left-4 top-2 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-teal-600">Full Name</label>
+      </div>
+
+      <!-- Pax -->
+      <div class="relative">
+        <input type="number" name="pax" placeholder=" " class="peer w-full border rounded-lg px-4 pt-5 pb-2 text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+        <label for="pax" class="absolute left-4 top-2 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-teal-600">Pax</label>
+      </div>
+
+      <!-- Email -->
+      <div class="relative">
+        <input type="email" name="email" placeholder=" " class="peer w-full border rounded-lg px-4 pt-5 pb-2 text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+        <label for="email" class="absolute left-4 top-2 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-teal-600">E-mail</label>
+      </div>
+
+      <!-- Phone Number -->
+      <div class="relative">
+        <input type="tel" name="phone_number" placeholder=" " class="peer w-full border rounded-lg px-4 pt-5 pb-2 text-gray-900 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+        <label for="phone_number" class="absolute left-4 top-2 text-gray-500 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:top-2 peer-focus:text-sm peer-focus:text-teal-600">Phone No</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceed to Payment -->
+  <div class="px-6 mt-8 mb-12 flex justify-center">
+    <button type="button" onclick="openPaymentModal()" class="bg-teal-600 hover:bg-teal-700 text-white font-medium text-lg px-8 py-3 rounded-lg shadow-md transition duration-200" >
+      Proceed to Payment
+    </button>
+  </div>
+    
+  </div>
+</form>
+
+ <!-- Reservation Pop-Up -->
+  <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
+    <!-- Pop-Up Content -->
+    <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 animate-fade-in">
+      <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Choose Reservation Type</h2>
+
+      <div class="grid gap-4">
+        <button id="roomReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Room Reservation
+        </button>
+        <button id="cottageReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Cottage Reservation
+        </button>
+        <button id="eventReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Event Reservation
+        </button>
+      </div>
+
+      <!-- Close Button -->
+      <div class="text-center mt-6">
+        <button onclick="closeReserModal()" class="text-gray-500 hover:text-gray-700 font-medium">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Pop-Up -->
+  <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
+    <!-- Pop-Up Content -->
+    <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 animate-fade-in">
+      <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Choose Order Type</h2>
+
+      <div class="grid grid-cols-2 gap-6">
+        <button id="foodOrder" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Food Order
+        </button>
+        <button id="farmOrder" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Farm Order
+        </button>
+      </div>
+
+      <!-- Close Button -->
+      <div class="text-center mt-6">
+        <button onclick="closeOrderModal()" class="text-gray-500 hover:text-gray-700 font-medium">Close</button>
+      </div>
+    </div>
+  </div>
+
+   <!-- Payment Modal -->
+  <div id="paymentModal" class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
+    <!-- Content -->
+    <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 animate-fade-in">
+      <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Choose Payment Method</h2>
+      <div class="grid gap-4">
+
+     <div id="paymentSummary" class="bg-gray-100 p-4 rounded-lg mb-4 text-sm text-gray-800">
+
+     </div>
+    <div class="grid gap-4">
+        <button type="button" id="cashPayment" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Cash Payment
+        </button>
+        <button type="button" id="gcashPayment" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          GCash Payment
+        </button>
+      </div>
+
+      <!-- Close Button -->
+      <div class="text-center mt-6">
+        <button onclick="closePaymentModal()" class="text-gray-500 hover:text-gray-700 font-medium">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Alert Modal -->
+
+<div id="alertModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+  <div class="bg-white p-6 rounded-2xl shadow-xl w-80 text-center">
+    <h2 id="alertMessage" class="text-lg font-semibold text-gray-800 mb-4"></h2>
+    <button onclick="closeAlert()" class="px-4 py-2 bg-teal-600 text-white rounded-xl hover:bg-teal-700">
+      OK
+    </button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="mt-16">
+  <style>
+    .font-pacifico {
+      font-family: 'Pacifico', cursive;
+    }
+  </style>
+  
+  <div class="bg-teal-800 text-white text-center py-6">
+    <p class="uppercase tracking-widest text-sm mb-2">
+      Lola Sayong Eco-Surfcamp, Buenavista, Gubat, Sorsogon, Philippines 
+      lolasayong.org@gmail.com
+    </p>
+    <h1 class="text-white text-4xl font-pacifico">Lola Sayong</h1>
+    <p class="text-white text-lg">GreenLink</p>
+  </div>
+
+  <div class="bg-black text-center text-white py-2 text-sm flex items-center justify-center gap-2">
+    <span>©</span>
+    <span>All Rights Reserved</span>
+  </div>
+</footer>
+
+<script src="../scripts/roomConnection.js"></script>
+</body>
+</html>

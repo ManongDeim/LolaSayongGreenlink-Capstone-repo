@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../output.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white">
+    <!--Header-->
+    <header class="flex items-center justify-between px-6 py-8 h-[150px] bg-white shadow relative z-10"> 
+      <nav class="flex gap-20 items-right text-3xl">
+          <a href="../index.html" class="pl-10 text-gray-700 hover:text-teal-600 font-medium">Home</a>
+          <a onclick="openReserModal()" class="text-gray-700 hover:text-teal-600 font-medium">Booking</a>
+          <a onclick="openOrderModal()" class="text-gray-700 hover:text-teal-600 font-medium">Order</a>
+      </nav>
+
+      <div class="absolute left-1/2 transform -translate-x-1/2">
+          <img src="../src/Pictures/lolasayongGreenLink-removebg-preview.png" alt="Logo" class="h-[230px] w-auto">
+      </div>
+      <div class="w-[120px]"></div>
+    </header class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center px-4">
+
+    <!--Event Booking Title-->
+    <section class="px-6 mt-8 text-center">
+        <h1 class="text-3xl font-bold mb-6">Event Booking</h1>
+    </section>
+    <!--Booking Form-->
+    <form id="eventBookingForm">
+      <!--Date-->
+    <div class="flex justify-center mt-6">
+        <div class="flex gap-4 w-full max-w-3xl">
+      <!-- Start Date -->
+      <div class="relative flex-1">
+         <label for="start_date"  class="block mb-1 font-medium">Starting Date</label>
+        <input type="date" name="start_date" id="startDate" 
+          class="w-full border rounded-md px-4 py-3 text-gray-900 shadow-sm 
+                 focus:outline-none focus:ring-2 focus:ring-teal-600">
+      </div>
+
+      <!-- End Date -->
+      <div class="relative flex-1">
+         <label for="end_date" class="block mb-1 font-medium">End Date</label>
+        <input type="date" name="end_date" id="endDate" 
+          class="w-full border rounded-md px-4 py-3 text-gray-900 shadow-sm 
+                 focus:outline-none focus:ring-2 focus:ring-teal-600">
+      </div>
+    </div>
+  </div>
+  <!-- Booking Info -->
+  <section class="px-6 mt-10 mb-12">
+    <h2 class="text-2xl font-semibold mb-6 text-center text-green-900">Event Booking Info</h2>
+
+      <!-- Full Name -->
+      <div>
+        <label for="fullname" class="block mb-1 font-medium">Full Name</label>
+        <input type="text" name="full_name" id="fullname" placeholder="Enter your name"
+          class="w-full border rounded-md px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block mb-1 font-medium">E-mail</label>
+        <input type="email" name="email" id="email" placeholder="name@mail.com"
+          class="w-full border rounded-md px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+      </div>
+
+      <!-- Phone No -->
+      <div>
+        <label for="phone" class="block mb-1 font-medium">Phone No</label>
+        <input type="tel" name="phone_number" id="phone" placeholder="+63"
+          class="w-full border rounded-md px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+      </div>
+
+      <!-- No of Pax -->
+      <div>
+        <label for="pax" class="block mb-1 font-medium">No of Pax.</label>
+        <input type="number" name="pax" id="pax" placeholder="Pax."
+          class="w-full border rounded-md px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600">
+      </div>
+
+
+      <!-- Things to be brought -->
+      <div class="md:col-span-2">
+        <label for="things" class="block mb-1 font-medium">Things to be brought:</label>
+        <textarea id="things" name="to_bring" placeholder="Volleyball Net&#10;Banners"
+          class="w-full border rounded-md px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-600 h-28"></textarea>
+      </div>
+    
+  </section>
+
+  <!-- Submit Button -->
+  <div class="flex justify-center mb-12">
+    <button type="submit" 
+      class="bg-teal-700 hover:bg-teal-800 text-white font-medium px-10 py-3 rounded-md shadow-md transition">
+      Submit
+    </button>
+  </div>
+
+  <p id="response"></p>
+  </form>
+
+  <!-- Reservation Pop-Up -->
+  <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
+    <!-- Pop-Up Content -->
+    <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 animate-fade-in">
+      <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Choose Reservation Type</h2>
+
+      <div class="grid gap-4">
+        <button id="roomReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Room Reservation
+        </button>
+        <button id="cottageReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Cottage Reservation
+        </button>
+        <button id="eventReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Event Reservation
+        </button>
+      </div>
+
+      <!-- Close Button -->
+      <div class="text-center mt-6">
+        <button onclick="closeReserModal()" class="text-gray-500 hover:text-gray-700 font-medium">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Pop-Up -->
+  <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
+    <!-- Pop-Up Content -->
+    <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 animate-fade-in">
+      <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Choose Order Type</h2>
+
+      <div class="grid grid-cols-2 gap-6">
+        <button id="foodOrder" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Food Order
+        </button>
+        <button id="farmOrder" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
+          Farm Order
+        </button>
+      </div>
+
+      <!-- Close Button -->
+      <div class="text-center mt-6">
+        <button onclick="closeOrderModal()" class="text-gray-500 hover:text-gray-700 font-medium">Close</button>
+      </div>
+    </div>
+  </div>
+
+  
+
+<script src="../scripts/eventConnection.js"></script>
+</body>
+</html>
