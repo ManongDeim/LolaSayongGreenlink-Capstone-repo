@@ -31,7 +31,7 @@ startInput.addEventListener('change', function() {
     const startInputDate = new Date(this.value);
 
     startInputDate.setDate(startInputDate.getDate() + 1);
-    const minendInputDate = formatDate(checkInDate);
+    const minendInputDate = formatDate(startInputDateDate);
     endInput.setAttribute('min', minendInputDate);
 
     // If check-out is before new min, clear it
@@ -60,7 +60,7 @@ async function sendReservation(){
 
         let result = await response.json();
 
-        showAlert("✅ " + result.message + " (" + paymentMethod + ")");
+        showAlert("✅ " + result.message + " ");
 
         console.log("Success:", result);
 
@@ -68,7 +68,7 @@ async function sendReservation(){
         formE1.reset();
 
         //Close modal after success
-        closePaymentModal();
+        closeConfirmationModal();
 
     } catch (error) {
         console.error("Error:", error);
@@ -138,9 +138,18 @@ async function sendReservation(){
        document.body.style.overflow = 'hidden';
     }
 
-     function closePaymentModal() {
+     function closeConfirmationModal() {
       document.getElementById('confirmationModal').classList.add('hidden');
        document.body.style.overflow = '';
+    }
+
+      function showAlert(message) {
+  document.getElementById("alertMessage").textContent = message;
+  document.getElementById("alertModal").classList.remove("hidden");
+    }
+
+    function closeAlert() {
+  document.getElementById("alertModal").classList.add("hidden");
     }
 
 

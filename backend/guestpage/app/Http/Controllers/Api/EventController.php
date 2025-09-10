@@ -18,6 +18,7 @@ class EventController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'full_name' => $request->full_name,
+            'event_type' => $request->event_type,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
             'pax' => $request->pax,
