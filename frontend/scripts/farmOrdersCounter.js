@@ -73,7 +73,7 @@ function updateCartBadge() {
 document.querySelector("form").addEventListener("button", function(e) {
   e.preventDefault();
   if (cart.length === 0) {
-    alert("Your cart is empty!");
+    showAlert("Your cart is empty.");
     return;
   }
   openModal();
@@ -174,12 +174,7 @@ function confirmOrder() {
     
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("cashPayment").addEventListener("click", () => {
-    sendOrder("Cash");
-  });
 
-});
 
 // Send to Laravel
 
@@ -205,10 +200,17 @@ function sendOrder(paymentMethod) {
     showAlert("✅ " + data.message + " (" + paymentMethod + ")");
     cart = [];
     updateCartBadge();
-    closePaymentModal();
+
   })
   .catch(err => console.error("Error:", err));
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("cashPayment").addEventListener("click", () => {
+    sendOrder("Cash");
+  });
+
+});
 
 
 // Price list

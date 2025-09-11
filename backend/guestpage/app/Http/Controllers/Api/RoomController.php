@@ -18,7 +18,6 @@ class RoomController extends Controller
             'check_in_date' => $request->check_in_date,
             'check_out_date' => $request->check_out_date,
             'full_name' => $request->full_name,
-            'event_type' => $request->event_type,
             'email' => $request->email,
             'phone_number' => $request->phone_number,
             'pax' => $request->pax,
