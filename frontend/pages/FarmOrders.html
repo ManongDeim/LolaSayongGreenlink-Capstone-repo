@@ -9,29 +9,43 @@
 </head>
 <body class="bg-white">
 
-  <!-- Header -->
-  <header class="flex items-center justify-between px-6 py-8 h-[150px] bg-white shadow relative z-10"> 
-    <nav class="flex gap-20 items-right text-3xl">
-        <a href="../index.html" class="pl-10 text-gray-700 hover:text-teal-600 font-medium">Home</a>
-        <a onclick="openReserModal()" class="text-gray-700 hover:text-teal-600 font-medium">Booking</a>
-        <a onclick="openOrderModal()" class="text-gray-700 hover:text-teal-600 font-medium">Order</a>
+ <!-- Header -->
+<header class="flex items-center justify-between px-6 h-24 bg-gradient-to-r from-teal-700 via-teal-600 to-teal-500 shadow-md">
+
+  <!-- Left: Logo + Nav -->
+  <div class="flex items-center gap-8">
+    <!-- Logo (keeps your preferred h-24) -->
+    <img src="../src/Pictures/LogoLolasayong2.png" alt="Logo"
+         class="h-24 w-auto object-contain">
+
+    <!-- Navigation -->
+    <nav class="flex gap-6">
+      <a href="#" class="text-white text-sm font-medium hover:text-gray-200 transition">Home</a>
+      <a onclick="openReserModal()" class="text-white text-sm font-medium hover:text-gray-200 transition">Booking</a>
+      <a onclick="openOrderModal()" class="text-white text-sm font-medium hover:text-gray-200 transition">Order</a>
     </nav>
+  </div>
 
-    <div class="absolute left-1/2 transform -translate-x-1/2">
-        <img src="../src/Pictures/lolasayongGreenLink-removebg-preview.png" alt="Logo" class="h-[230px] w-auto">
-    </div>
-    <div class="w-[120px]"></div>
-    </div>
-
-    <!--Cart icon-->
-   <div class="relative cursor-pointer" onclick="openModal()">
-      <span class="material-icons text-4xl text-teal-700"><img src="../src/Pictures/trolley-cart.png" class="h-[50px] w-auto" alt="Logo"></span>
-      <span id="cartCount" 
-            class="absolute -top-4 -right-3 bg-red-600 text-white text-sm rounded-full px-2 py-0.5">
+  <!-- Right: Cart + Login -->
+  <div class="flex items-center gap-4">
+    <!-- Cart -->
+    <div class="relative cursor-pointer" onclick="openModal()">
+      <img src="../src/Pictures/trolley-cart.png" class="h-6 w-auto" alt="Cart">
+      <span id="cartCount" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1.5 py-0.5 shadow">
         0
       </span>
     </div>
-  </header>
+
+    <!-- Google Login -->
+    <button class="flex items-center gap-2 bg-white text-gray-700 rounded-full px-3 py-1.5 text-sm hover:bg-gray-100 transition-shadow shadow-sm">
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-4 h-4" alt="Google">
+      <span>Log-in</span>
+    </button>
+  </div>
+
+</header>
+
+
 
   <!-- Toast Notification -->
 <div id="toast" 
