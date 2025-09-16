@@ -7,19 +7,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body class="bg-white">
-    <!--Header-->
-    <header class="flex items-center justify-between px-6 py-8 h-[150px] bg-white shadow relative z-10"> 
-      <nav class="flex gap-20 items-right text-3xl">
-          <a href="../index.html" class="pl-10 text-gray-700 hover:text-teal-600 font-medium">Home</a>
-          <a onclick="openReserModal()" class="text-gray-700 hover:text-teal-600 font-medium">Booking</a>
-          <a onclick="openOrderModal()" class="text-gray-700 hover:text-teal-600 font-medium">Order</a>
-      </nav>
+  <!-- Header -->
+<header class="flex items-center justify-between px-8 py-3 bg-gradient-to-r from-teal-700 via-teal-600 to-teal-500 shadow-md relative">
 
-      <div class="absolute left-1/2 transform -translate-x-1/2">
-          <img src="../src/Pictures/lolasayongGreenLink-removebg-preview.png" alt="Logo" class="h-[230px] w-auto">
-      </div>
-      <div class="w-[120px]"></div>
-    </header class="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center px-4">
+  <!-- Left: Logo + Navigation -->
+  <div class="flex items-center gap-10">
+    <!-- Logo (slightly smaller for balance) -->
+    <img src="../src/Pictures/LogoLolasayong2.png" alt="Logo" 
+         class="h-20 w-auto object-contain">
+
+    <!-- Navigation -->
+    <nav class="flex gap-8 text-lg font-medium">
+      <a href="#" class="text-white hover:text-gray-200 transition">Home</a>
+      <a onclick="openReserModal()" class="text-white hover:text-gray-200 transition">Booking</a>
+      <a onclick="openOrderModal()" class="text-white hover:text-gray-200 transition">Order</a>
+    </nav>
+  </div>
+
+  <!-- Right: Google Login -->
+  <div class="flex items-center">
+    <button class="flex items-center gap-2 bg-white text-gray-700 rounded-full px-4 py-2 hover:bg-gray-100 transition shadow-md">
+      <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" />
+      <span class="text-sm font-medium">Log-in</span>
+    </button>
+  </div>
+
+</header>
+
+
 
     <!--Event Booking Title-->
     <section class="px-6 mt-8 text-center">
@@ -113,6 +128,28 @@
 
   <p id="response"></p>
   </form>
+  <!--Footer-->
+  <footer class="mt-16">
+    <style>
+    .font-pacifico{
+       font-family: 'Pacifico', cursive;
+       }
+    </style>
+    
+    <div class="bg-teal-800 text-white text-center py-6">
+      <p class="uppercase tracking-widest text-xs md:text-sm mb-2">
+        Lola Sayong Eco-Surfcamp, Buenavista, Gubat, Sorsogon, Philippines 
+        • lolasayong.org@gmail.com
+      </p>
+      <h1 class="text-white text-2xl md:text-3xl font-pacifico">Lola Sayong</h1>
+      <p class="text-white text-sm md:text-base">GreenLink</p>
+    </div>
+
+    <div class="bg-black text-center text-white py-2 text-xs md:text-sm flex items-center justify-center gap-1">
+      <span>©</span>
+      <span>All Rights Reserved</span>
+    </div>
+  </footer>
 
   <!-- Reservation Pop-Up -->
   <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
