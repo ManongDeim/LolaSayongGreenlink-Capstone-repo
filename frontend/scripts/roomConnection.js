@@ -216,3 +216,30 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "./FarmOrders.html"; // go to another page
   });
 });
+// Automatic Image Carousel
+document.addEventListener("DOMContentLoaded", () => {
+  const carousel = document.getElementById("carousel");
+  const slides = carousel.querySelectorAll("img");
+  let index = 0;
+
+  function updateCarousel() {
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+  }
+
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    updateCarousel();
+  }
+
+  // Auto scroll every 3 seconds
+  setInterval(nextSlide, 3000);
+
+  // Expose functions globally so buttons work
+  window.nextSlide = nextSlide;
+  window.prevSlide = prevSlide;
+});
