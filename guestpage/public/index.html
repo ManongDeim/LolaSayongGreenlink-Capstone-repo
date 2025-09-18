@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./output.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <!-- Flatpickr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body class="bg-white">
 <!-- Header -->
@@ -18,8 +20,8 @@
 
     <!-- Navigation -->
     <nav class="flex gap-8 text-lg font-medium">
-      <a href="./index.html" class="text-gray-700 hover:text-teal-600 transition">Homee</a>
-      <button onclick="openReserModal()" class="text-gray-700 hover:text-teal-600 transition">
+      <a href="./index.html" class="text-gray-700 hover:text-teal-600 transition">Home</a>
+      <button onclick="openReserModal()" class="text-gray-700 hover:text-teal-600 transition bg-auto">
         Booking
       </button>
       <button onclick="openOrderModal()" class="text-gray-700 hover:text-teal-600 transition">
@@ -50,19 +52,22 @@
     <p class="text-white text-lg md:text-xl font-light drop-shadow-md">where every wave invites adventure, every stay supports the community,</p>
     <p class="text-white text-lg md:text-xl font-light drop-shadow-md">and every moment brings you closer to nature, simplicity, and home.</p>
  
-      <!--Calendar-->
-      <div class="rounded-lg p-6 flex flex-wrap gap-4 justify-center shadow-lg mt-6">
+      <!--Calendar with Date Range Picker-->
+      <div class="backdrop-blur-md bg-transparent/40 rounded-xl p-6 flex flex-wrap gap-4 justify-center shadow-2xl mt-6">
         <div class="flex flex-col">
-          <label class="text-white font-medium mb-1">Check-In</label>
-          <input type="date" class="bg-white border px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+          <label class="text-gray-800 font-medium mb-1">Check-In</label>
+          <input id="checkIn" type="text" readonly placeholder="Select date" 
+                 class="bg-white border px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
         </div>
 
         <div class="flex flex-col">
-          <label class="text-white font-medium mb-1">Check-Out</label>
-          <input type="date" class="bg-white border px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+          <label class="text-gray-800 font-medium mb-1">Check-Out</label>
+          <input id="checkOut" type="text" readonly placeholder="Select date" 
+                 class="bg-white border px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
         </div>
+
         <div class="flex flex-col">
-          <label class="text-white font-medium mb-1">Reservation Type</label>
+          <label class="text-gray-800 font-medium mb-1">Reservation Type</label>
           <select class="bg-white border px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
             <option>Room Reservation</option>
             <option>Cottage Reservation</option>
@@ -126,9 +131,9 @@
     </div>
     <div>
       <h3 class="text-lg font-semibold mb-3">Contact</h3>
-      <p class="text-sm">📍 Brgy. XYZ, City</p>
-      <p class="text-sm">📞 +63 912 345 6789</p>
-      <p class="text-sm">✉️ info@lolasayong.com</p>
+      <p class="text-sm">📍 Brgy. Buenavista, Gubat, Sorsogon</p>
+      <p class="text-sm">📞 +63 939 907 6136</p>
+      <p class="text-sm">✉️ lolasayong.org@gmail.com</p>
     </div>
     <div>
       <h3 class="text-lg font-semibold mb-3">Follow Us</h3>
@@ -190,7 +195,7 @@
     </div>
   </div>
 
-  
+  <!-- Link to your JS file -->
   <script src="./scripts/indexScript.js"></script>
 
   <style>
