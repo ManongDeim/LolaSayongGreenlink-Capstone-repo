@@ -31,6 +31,13 @@ document.addEventListener("click", function (event) {
       event.target === orderModal) {
     closeOrderModal();
   }
+  // --- Close Modal When Pressing ESC ---
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeReserModal();
+    closeOrderModal();
+  }
+});
 });
 
 

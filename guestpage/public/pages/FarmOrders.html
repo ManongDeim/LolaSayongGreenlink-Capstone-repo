@@ -10,19 +10,20 @@
 <body class="bg-white">
 
  <!-- Header -->
-<header class="flex items-center justify-between px-6 h-24 bg-gradient-to-r from-teal-700 via-teal-600 to-teal-500 shadow-md">
+<header class="flex items-center justify-between px-8 py-3 bg-gradient-to-r from-teal-700 via-teal-600 to-teal-500 shadow-md">
 
   <!-- Left: Logo + Nav -->
   <div class="flex items-center gap-8">
-    <!-- Logo (keeps your preferred h-24) -->
-    <img src="../src/Pictures/LogoLolasayong2.png" alt="Logo"
-         class="h-24 w-auto object-contain">
-
+    <!-- Logo -->
+     <a href="../index.html">
+    <img src="../src/Pictures/LogoLolasayong2.png" alt="Logo" 
+         class="h-20 w-auto object-contain">
+      </a>
     <!-- Navigation -->
-    <nav class="flex gap-6">
-      <a href="../HomePage.html" class="text-white text-sm font-medium hover:text-gray-200 transition">Home</a>
-      <a onclick="openReserModal()" class="text-white text-sm font-medium hover:text-gray-200 transition">Booking</a>
-      <a onclick="openOrderModal()" class="text-white text-sm font-medium hover:text-gray-200 transition">Order</a>
+    <nav class="flex gap-8 text-lg font-medium">
+      <a href="../index.html" class="text-white hover:text-gray-200 transition">Home</a>
+      <a onclick="openReserModal()" class="text-white hover:text-gray-200 transition">Booking</a>
+      <a onclick="openOrderModal()" class="text-white hover:text-gray-200 transition">Order</a>
     </nav>
   </div>
 
@@ -200,7 +201,7 @@
   </div>
 
   <!-- Reservation Pop-Up -->
-  <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
+  <div id="reservationModal" class="fixed inset-0 bg-white/30 backdrop-blur-md items-center flex justify-center hidden z-50">
     <!-- Pop-Up Content -->
     <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 animate-fade-in">
       <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Choose Reservation Type</h2>
@@ -208,9 +209,6 @@
       <div class="grid gap-4">
         <button id="roomReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
           Room Reservation
-        </button>
-        <button id="cottageReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
-          Cottage Reservation
         </button>
         <button id="eventReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
           Event Reservation
@@ -225,7 +223,7 @@
   </div>
 
   <!-- Order Pop-Up -->
-  <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
+  <div id="orderModal" class="fixed inset-0 bg-white/30 backdrop-blur-md items-center flex justify-center hidden z-50">
     <!-- Pop-Up Content -->
     <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 animate-fade-in">
       <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Choose Order Type</h2>
