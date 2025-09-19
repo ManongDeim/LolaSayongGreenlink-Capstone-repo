@@ -21,7 +21,7 @@
       </a>
 
     <!-- Navigation -->
-    <nav class="flex gap-8 text-lg font-medium">
+    <nav class="flex gap-6 text-lg font-medium">
       <a href="../index.html" class="text-white hover:text-gray-200 transition">Home</a>
       <a onclick="openReserModal()" class="text-white hover:text-gray-200 transition">Booking</a>
       <a onclick="openOrderModal()" class="text-white hover:text-gray-200 transition">Order</a>
@@ -45,37 +45,182 @@
 
   <!-- Rooms Grid -->
   <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mt-10 p-4">
-    <!-- Room Card -->
+    
+    <!-- Solo with Private Cr -->
     <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-[1.02] transition cursor-pointer"
-         onclick="openRoomModal('deluxeRoomModal')">
-      <img src="./src/Pictures/rooms/deluxe.jpg" alt="Deluxe Room" class="w-full h-56 object-cover">
+         onclick="openRoomModal('soloHut')">
+      <img src="../src/Pictures/VillaVictoria1.jpg" alt="Solo Hut" class="w-full h-56 object-cover">
       <div class="p-4 text-center">
-        <h2 class="text-xl font-bold text-gray-800">Deluxe Room</h2>
+        <h2 class="text-xl font-bold text-gray-800">Solo Hut</h2>
+        <p class="text-gray-600 text-sm mt-2">Cozy and perfect for 1 guest.</p>
+      </div>
+    </div>
+
+    <!-- Duo Hut -->
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-[1.02] transition cursor-pointer"
+         onclick="openRoomModal('DuoHut')">
+      <img src="../src/Pictures/VillaVictoria1.jpg" alt="DuoHut" class="w-full h-56 object-cover">
+      <div class="p-4 text-center">
+        <h2 class="text-xl font-bold text-gray-800">Duo Hut</h2>
         <p class="text-gray-600 text-sm mt-2">Cozy and perfect for 2 guests.</p>
       </div>
     </div>
 
-    <!-- Room Card -->
+    <!-- Trio Hut -->
     <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-[1.02] transition cursor-pointer"
-         onclick="openRoomModal('deluxeRoomModal')">
-      <img src="../src/Pictures/VillaVictoria1.jpg" alt="Deluxe Room" class="w-full h-56 object-cover">
+         onclick="openRoomModal('TrioHut')">
+      <img src="../src/Pictures/VillaVictoria1.jpg" alt="TrioHut" class="w-full h-56 object-cover">
       <div class="p-4 text-center">
-        <h2 class="text-xl font-bold text-gray-800">Deluxe Room</h2>
+        <h2 class="text-xl font-bold text-gray-800">Trio Hut</h2>
+        <p class="text-gray-600 text-sm mt-2">Cozy and perfect for 3 guests.</p>
+      </div>
+    </div>
+
+    <!-- Aircon Cabin1 -->
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-[1.02] transition cursor-pointer"
+         onclick="openRoomModal('airconCabin1')">
+      <img src="../src/Pictures/VillaVictoria1.jpg" alt="AirconCabin1" class="w-full h-56 object-cover">
+      <div class="p-4 text-center">
+        <h2 class="text-xl font-bold text-gray-800">Aircon Cabin1</h2>
         <p class="text-gray-600 text-sm mt-2">Cozy and perfect for 2 guests.</p>
       </div>
     </div>
 
-    <!-- Add more cards below like Premier Suite, Family Suite, etc. -->
+    <!-- Aircon Cabin2 -->
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-[1.02] transition cursor-pointer"
+         onclick="openRoomModal('airconCabin2')">
+      <img src="../src/Pictures/VillaVictoria1.jpg" alt="AirconCabin2" class="w-full h-56 object-cover">
+      <div class="p-4 text-center">
+        <h2 class="text-xl font-bold text-gray-800">Aircon Cabin2</h2>
+        <p class="text-gray-600 text-sm mt-2">Cozy and perfect for 3 guests.</p>
+      </div>
+    </div>
+
+    <!-- Aircon Room Cabin -->
+    <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-[1.02] transition cursor-pointer"
+         onclick="openRoomModal('airconRoomCabin')">
+      <img src="../src/Pictures/VillaVictoria1.jpg" alt="AirconRoomCabin" class="w-full h-56 object-cover">
+      <div class="p-4 text-center">
+        <h2 class="text-xl font-bold text-gray-800">Aircon Room Cabin</h2>
+        <p class="text-gray-600 text-sm mt-2">Cozy and perfect for 4-6 guests.</p>
+      </div>
+    </div>
+
   </section>
 
-  <!-- Modal Template -->
-  <div id="deluxeRoomModal" class="hidden fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-sm z-50">
+  <!-- Modal for Solo Hut -->
+  <div id="soloHut" class="hidden fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-sm z-50">
     <div class="bg-white rounded-2xl p-6 max-w-lg w-full relative shadow-lg">
-      <button onclick="closeRoomModal('deluxeRoomModal')" 
+      <button onclick="closeRoomModal('soloHut')" 
+              class="absolute top-3 right-3 text-gray-600 hover:text-gray-900">&times;</button>
+      
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Solo Hut</h2>
+      <img src="./src/Pictures/rooms/deluxe.jpg" alt="Deluxe Room" class="rounded-xl mb-4">
+      <p class="text-gray-700 mb-4">
+        Our Deluxe Room features a queen-sized bed, air conditioning, and complimentary breakfast. 
+        Perfect for a relaxing getaway.
+      </p>
+      <ul class="list-disc pl-5 text-gray-700">
+        <li>✔ Free Wi-Fi</li>
+        <li>✔ Air-conditioning</li>
+        <li>✔ Private Bathroom</li>
+        <li>✔ Free Breakfast</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal for Duo Hut -->
+  <div id="DuoHut" class="hidden fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-sm z-50">
+    <div class="bg-white rounded-2xl p-6 max-w-lg w-full relative shadow-lg">
+      <button onclick="closeRoomModal('DuoHut')" 
               class="absolute top-3 right-3 text-gray-600 hover:text-gray-900">&times;</button>
       
       <h2 class="text-2xl font-bold text-gray-800 mb-4">Deluxe Room</h2>
-      <img src="./src/Pictures/rooms/deluxe.jpg" alt="Deluxe Room" class="rounded-xl mb-4">
+      <img src="./src/Pictures/VillaVictoria1.jpg" alt="Deluxe Room" class="rounded-xl mb-4">
+      <p class="text-gray-700 mb-4">
+        Our Deluxe Room features a queen-sized bed, air conditioning, and complimentary breakfast. 
+        Perfect for a relaxing getaway.
+      </p>
+      <ul class="list-disc pl-5 text-gray-700">
+        <li>✔ Free Wi-Fi</li>
+        <li>✔ Air-conditioning</li>
+        <li>✔ Private Bathroom</li>
+        <li>✔ Free Breakfast</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal for Trio Hut -->
+  <div id="TrioHut" class="hidden fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-sm z-50">
+    <div class="bg-white rounded-2xl p-6 max-w-lg w-full relative shadow-lg">
+      <button onclick="closeRoomModal('TrioHut')" 
+              class="absolute top-3 right-3 text-gray-600 hover:text-gray-900">&times;</button>
+      
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">TrioRoom</h2>
+      <img src="./src/Pictures/VillaVictoria1.jpg" alt="Deluxe Room" class="rounded-xl mb-4">
+      <p class="text-gray-700 mb-4">
+        Our Deluxe Room features a queen-sized bed, air conditioning, and complimentary breakfast. 
+        Perfect for a relaxing getaway.
+      </p>
+      <ul class="list-disc pl-5 text-gray-700">
+        <li>✔ Free Wi-Fi</li>
+        <li>✔ Air-conditioning</li>
+        <li>✔ Private Bathroom</li>
+        <li>✔ Free Breakfast</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal for Aircon Cabin1 -->
+  <div id="airconCabin1" class="hidden fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-sm z-50">
+    <div class="bg-white rounded-2xl p-6 max-w-lg w-full relative shadow-lg">
+      <button onclick="closeRoomModal('airconCabin1')" 
+              class="absolute top-3 right-3 text-gray-600 hover:text-gray-900">&times;</button>
+      
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Aircon Cabin1</h2>
+      <img src="../src/Pictures/VillaVictoria1.jpg" alt="Deluxe Room" class="rounded-xl mb-4">
+      <p class="text-gray-700 mb-4">
+        Our Deluxe Room features a queen-sized bed, air conditioning, and complimentary breakfast. 
+        Perfect for a relaxing getaway.
+      </p>
+      <ul class="list-disc pl-5 text-gray-700">
+        <li>✔ Free Wi-Fi</li>
+        <li>✔ Air-conditioning</li>
+        <li>✔ Private Bathroom</li>
+        <li>✔ Free Breakfast</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal for Aircon Cabin2 -->
+  <div id="AirconCabin2" class="hidden fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-sm z-50">
+    <div class="bg-white rounded-2xl p-6 max-w-lg w-full relative shadow-lg">
+      <button onclick="closeRoomModal('airconCabin2')" 
+              class="absolute top-3 right-3 text-gray-600 hover:text-gray-900">&times;</button>
+      
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Aircon Cabin2</h2>
+      <img src="./src/Pictures/VillaVictoria1.jpg" alt="Deluxe Room" class="rounded-xl mb-4">
+      <p class="text-gray-700 mb-4">
+        Our Deluxe Room features a queen-sized bed, air conditioning, and complimentary breakfast. 
+        Perfect for a relaxing getaway.
+      </p>
+      <ul class="list-disc pl-5 text-gray-700">
+        <li>✔ Free Wi-Fi</li>
+        <li>✔ Air-conditioning</li>
+        <li>✔ Private Bathroom</li>
+        <li>✔ Free Breakfast</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal for Aircon Room Cabin -->
+  <div id="AirconCabin2" class="hidden fixed inset-0 flex justify-center items-center bg-black/40 backdrop-blur-sm z-50">
+    <div class="bg-white rounded-2xl p-6 max-w-lg w-full relative shadow-lg">
+      <button onclick="closeRoomModal('airconRoomCabin')" 
+              class="absolute top-3 right-3 text-gray-600 hover:text-gray-900">&times;</button>
+      
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Aircon Room Cabin</h2>
+      <img src="../src/Pictures/VillaVictoria1.jpg" alt="Deluxe Room" class="rounded-xl mb-4">
       <p class="text-gray-700 mb-4">
         Our Deluxe Room features a queen-sized bed, air conditioning, and complimentary breakfast. 
         Perfect for a relaxing getaway.
@@ -95,8 +240,10 @@
     <div>
       <h3 class="text-lg font-semibold mb-3">About Us</h3>
       <p class="text-sm leading-relaxed">
-        We provide the perfect venue for your weddings, birthdays, team buildings, and family gatherings.
-      </p>
+        Lola Sayong Eco Surf-Farm is a community-driven space in Sorsogon where nature,
+  culture, and people come together. We offer eco-friendly venues for celebrations,
+  farm-to-table dining, event booking, and room reservations — giving you a relaxing
+  escape by the sea.
     </div>
     <div>
       <h3 class="text-lg font-semibold mb-3">Contact</h3>
