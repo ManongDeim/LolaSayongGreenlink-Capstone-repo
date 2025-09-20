@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../output.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  
+  <!-- Tab Icon -->
+  <link rel="icon" type="image/png" href="../src/Pictures/LogoLolasayong2.png">
+
+  <title>Event Reservation</title>
 </head>
 <body class="bg-white">
 
@@ -116,7 +121,7 @@
   <div class="flex justify-center">
     <button type="button" onclick="openConfirmationModal()"
       class="bg-gradient-to-r from-teal-700 to-teal-600 hover:from-teal-800 hover:to-teal-700 text-white font-semibold text-lg px-10 py-3 rounded-xl shadow-lg transition-transform transform hover:scale-105">
-      Submit
+      Review & Confirm Booking
     </button>
   </div>
 
@@ -196,9 +201,9 @@
 
   <!-- Confirmation Modal -->
   <div id="confirmationModal"
-    class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
+    class="fixed inset-0 bg-white/30 backdrop-blur-md items-center flex justify-center hidden z-50">
     <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 animate-fade-in">
-      <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Confirmation</h2>
+      <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Booking Summary</h2>
       <div class="grid gap-4">
         <div id="confirmationSummary"
           class="bg-gray-100 p-4 rounded-lg mb-4 text-sm text-gray-800">
@@ -209,15 +214,11 @@
         <div class="grid gap-4">
           <button type="button" id="confirmBtn"
             class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
-            Confirm
-          </button>
-          <button type="button" id="cancelBtn"
-            class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
-            Cancel
+            Confirm & Proceed to Payment
           </button>
         </div>
         <div class="text-center mt-6">
-          <button onclick="closePaymentModal()" class="text-gray-500 hover:text-gray-700 font-medium">
+          <button onclick="closeConfirmationModal()" class="text-gray-500 hover:text-gray-700 font-medium">
             Close
           </button>
         </div>
@@ -227,7 +228,7 @@
 
   <!-- Alert Modal -->
   <div id="alertModal"
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    class="fixed inset-0 bg-white/30 backdrop-blur-md items-center flex justify-center hidden z-50">
     <div class="bg-white p-6 rounded-2xl shadow-xl w-80 text-center">
       <h2 id="alertMessage" class="text-lg font-semibold text-gray-800 mb-4"></h2>
       <button onclick="closeAlert()" class="px-4 py-2 bg-teal-600 text-white rounded-xl hover:bg-teal-700">
