@@ -1,46 +1,3 @@
-// Disable Past & Selected Dates
-
-const checkInInput = document.getElementById('checkIn');
-const checkOutInput = document.getElementById('checkOut');
-
-const today = new Date();
-
-// Format
-
-function formatDate(date){
-    const yyyy = date.getFullYear();
-    const mm = String(date.getMonth() + 1).padStart(2, '0');
-    const dd = String(date.getDate()).padStart(2, '0');
-    return `${yyyy}-${mm}-${dd}`;
-}
-
-// Set Today's Date as min check-in
-
-checkInInput.setAttribute('min', formatDate(today));
-
-// Set tommorows date as min check-out
-
-const tomorrow = new Date(today);
-tomorrow.setDate(tomorrow.getDate() + 1);
-checkOutInput.setAttribute('min', formatDate(tomorrow));
-
-
-// When check-in changes, updates check-out
-
-checkInInput.addEventListener('change', function() {
-    const checkInDate = new Date(this.value);
-
-    checkInDate.setDate(checkInDate.getDate() + 1);
-    const minCheckOutDate = formatDate(checkInDate);
-    checkOutInput.setAttribute('min', minCheckOutDate);
-
-    // If check-out is before new min, clear it
-
-    if (checkInInput.value && checkOutInput.value < minCheckOutDate){
-        checkOutInput.value ="";
-    }
-});
-
 // For Cottage Reservation
 async function sendReservation(paymentMethod){
   let formE1 = document.getElementById("roomBookingForm");
@@ -161,19 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
   //Room Reservation Page
   document.addEventListener("DOMContentLoaded", () => {
   
-  const btn = document.getElementById("roomReser");
-
-
-  btn.addEventListener("click", () => {
-    window.location.href = "./pages/RoomReser.html"; // go to another page
-  });
-});
-
-  //Cottage Reservation Page
-  document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("roomReserPage");
   
-  const btn = document.getElementById("cottageReser");
-
 
   btn.addEventListener("click", () => {
     window.location.href = "#"; // go to another page
@@ -188,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   btn.addEventListener("click", () => {
-    window.location.href = "./EventReser.html"; // go to another page
+    window.location.href = "EventReser.html"; // go to another page
   });
 });
 
@@ -201,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   btn.addEventListener("click", () => {
-    window.location.href = "./FarmOrders.html"; // go to another page
+    window.location.href = "FarmOrders.html"; // go to another page
   });
 });
 
@@ -243,3 +189,37 @@ document.addEventListener("DOMContentLoaded", () => {
   window.nextSlide = nextSlide;
   window.prevSlide = prevSlide;
 });
+
+//Square Room Page
+  document.addEventListener("DOMContentLoaded", () => { 
+  const btn = document.getElementById("squareRoom");
+
+
+  btn.addEventListener("click", () => {
+    window.location.href = "./SquareRoom.html"; // go to another page
+  });
+});
+
+
+function openRoomModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+    }
+    function closeRoomModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    }
+
+    // Close modal when clicking outside
+    document.querySelectorAll('[id$="Modal"]').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+        }
+      });
+    });
+
+    // Close modal on ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") {
+        document.querySelectorAll('[id$="Modal"]').forEach(modal => modal.classList.add('hidden'));
+      }
+    });
