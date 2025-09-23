@@ -288,6 +288,8 @@ function getPrice(itemName) {
   const navButtons = {
     roomReser: "./roomReser.html",
     eventReser: "./eventReser.html",
+    roomReser: "./RoomReser.html",
+    eventReser: "./EventReser.html",
     foodOrder: "./FoodOrders.html",
     farmOrder: "./FarmOrders.html",
   };
