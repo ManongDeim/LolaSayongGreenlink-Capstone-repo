@@ -213,3 +213,28 @@ async function sendReservation(){
     window.location.href = "./FarmOrders.html"; // go to another page
   });
 });
+
+ // --- Close Modal When Clicking Outside ---
+document.addEventListener("click", function (event) {
+  const reservationModal = document.getElementById("reservationModal");
+  const orderModal = document.getElementById("orderModal");
+
+  // If Reservation Modal is open and user clicks outside the content box
+  if (!reservationModal.classList.contains("hidden") &&
+      event.target === reservationModal) {
+    closeReserModal();
+  }
+
+  // If Order Modal is open and user clicks outside the content box
+  if (!orderModal.classList.contains("hidden") &&
+      event.target === orderModal) {
+    closeOrderModal();
+  }
+  // --- Close Modal When Pressing ESC ---
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeReserModal();
+    closeOrderModal();
+  }
+});
+});

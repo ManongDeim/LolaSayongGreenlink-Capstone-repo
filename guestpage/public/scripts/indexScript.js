@@ -111,22 +111,41 @@ flatpickrScript.onload = () => {
   const checkInInput = document.getElementById("checkIn");
   const checkOutInput = document.getElementById("checkOut");
 
-  // Single Flatpickr controlling both fields
+  // --- Flatpickr ---
+const flatpickrScript = document.createElement("script");
+flatpickrScript.src = "https://cdn.jsdelivr.net/npm/flatpickr";
+document.head.appendChild(flatpickrScript);
+
+flatpickrScript.onload = () => {
+  const checkInInput = document.getElementById("checkIn");
+  const checkOutInput = document.getElementById("checkOut");
+
+  let lastCheckIn = null; // store last check-in date
+
   const picker = flatpickr(checkInInput, {
     mode: "range",
     dateFormat: "Y-m-d",
     minDate: "today",
-    showMonths: 2, 
-    onClose: function (selectedDates) {
-      if (selectedDates.length === 1) {
-        // Auto set checkout as the next day
-        const nextDay = new Date(selectedDates[0]);
-        nextDay.setDate(nextDay.getDate() + 1);
-        picker.setDate([selectedDates[0], nextDay], true);
-        checkInInput.value = selectedDates[0].toLocaleDateString();
-        checkOutInput.value = nextDay.toLocaleDateString();
+    showMonths: 2,
+    onOpen: function () {
+      // When opening from check-out, keep check-in selected
+      if (lastCheckIn) {
+        picker.setDate([lastCheckIn], false);
       }
+    },
+    onClose: function (selectedDates) {
       if (selectedDates.length === 2) {
+        // Enforce min 1-night stay
+        if (selectedDates[1].getTime() === selectedDates[0].getTime()) {
+          const nextDay = new Date(selectedDates[0]);
+          nextDay.setDate(nextDay.getDate() + 1);
+          picker.setDate([selectedDates[0], nextDay], true);
+          selectedDates[1] = nextDay;
+        }
+
+        // Save last check-in date for future use
+        lastCheckIn = selectedDates[0];
+
         // Update inputs
         checkInInput.value = selectedDates[0].toLocaleDateString();
         checkOutInput.value = selectedDates[1].toLocaleDateString();
@@ -134,8 +153,12 @@ flatpickrScript.onload = () => {
     }
   });
 
-  // Make Check-Out input also open the same calendar
-  checkOutInput.addEventListener("click", () => picker.open());
+  // Make Check-Out input open calendar but keep check-in date
+  checkOutInput.addEventListener("click", () => {
+    if (lastCheckIn) {
+      picker.setDate([lastCheckIn], false); // Pre-select last check-in date
+    }
+    picker.open();
+  });
 };
-
-
+};
