@@ -6,11 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\FarmOrderModel;
 use App\Http\Controllers\Controller;
-use App\Services\PaymongoService;
 
 
 class FarmOrderController extends Controller
 {       
+
+   private function getCloudflareDomain()
+{
+    return env('CLOUDFLARE_URL', config('app.url'));
+}
+
+
  public function createPaymentLink(Request $request)
     {
         Log::info('Incoming request:', $request->all());
@@ -31,6 +37,8 @@ class FarmOrderController extends Controller
             'ref_number' => $refNumber,
         ];
 
+        $lineitems = [];
+
         foreach ($request->cart as $item) {
             switch ($item['name']) {
                 case 'Bangus': $orderData['bangus_order'] = $item['qty']; break;
@@ -41,33 +49,45 @@ class FarmOrderController extends Controller
                 case 'Squash': $orderData['squash_order'] = $item['qty']; break;
             }
 
-            $orderData['total_bill'] += $item['price'] * $item['qty'];
+             $subtotal = $item['price'] * $item['qty'];
+             $orderData['total_bill'] += $subtotal;
+
+            $lineitems[] = [
+            'currency' => 'PHP',
+            'amount'   => intval($item['price'] * 100), 
+            'name'     => $item['name'],
+            'quantity' => $item['qty']
+            ];
         }
 
-        // Save temporary order in session (not DB yet)
-        session([
-            'orderData' => $orderData,
-            'refNumber' => $refNumber
-        ]);
+        // Save order to DB
+        FarmOrderModel::create($orderData);
+
+         // Detect Cloudflare tunnel dynamically
+        $publicUrl = $this->getCloudflareDomain();
 
         // Call PayMongo API
         $response = Http::withBasicAuth(env('PAYMONGO_SECRET_KEY'), '')
-            ->post('https://api.paymongo.com/v1/links', [
+            ->post('https://api.paymongo.com/v1/checkout_sessions', [
                 'data' => [
                     'attributes' => [
+                        'line_items' => $lineitems, 
+                        'payment_method_types' => ['gcash'],
                         'amount' => intval($orderData['total_bill'] * 100), // centavos
                         'description' => "Farm Order Ref: $refNumber",
                         'remarks' => $refNumber,
                         'currency' => 'PHP',
-                        'redirect' => [
-                            'success' => route('farmOrders.paymentSuccess'),
-                            'failed' => route('farmOrders.paymentFailed'),
-                        ]
+                        'show_line_items' => true,
+                        'show_description' => true,
+                        'success_url' =>  $publicUrl . '/farmOrders/payment-success?remarks=' . $refNumber,
+                        'cancel_url' =>  $publicUrl . '/farmOrders/payment-failed?remarks=' . $refNumber,
                     ]
                 ]
             ]);
 
         $checkoutUrl = $response->json()['data']['attributes']['checkout_url'] ?? null;
+
+        Log::info('PayMongo response', $response->json());
 
         return response()->json([
     'payment_url' => $checkoutUrl
@@ -76,25 +96,39 @@ class FarmOrderController extends Controller
 
     public function paymentSuccess(Request $request)
     {
-        $refNumber = $request->query('remarks');
-        $orderData = session('orderData');
 
-        if (!$orderData || !$refNumber || $refNumber !== session('refNumber')) {
-            return redirect('/pages/paymentFailed.html');
+  Log::info("✅ paymentSuccess route hit", [
+        'full_url' => $request->fullUrl(),
+        'ref' => $request->query('remarks')
+    ]);
+
+        $refNumber = $request->query('remarks');
+        $order = FarmOrderModel::where('ref_number', $refNumber)->first();
+
+        if (!$order) {
+             return redirect()->away($request->getSchemeAndHttpHost() . '/pages/paymentFailed.html');
         }
 
-        // Save order to DB
-        FarmOrderModel::create($orderData);
+        
 
-        // Clear session
-        session()->forget(['orderData', 'refNumber']);
-
-        return redirect('/pages/paymentSuccess.html');
+        $order->update(['order_status' => 'Paid']);
+        Log::info("PaymentSuccess hit", $request->all());
+        return redirect()->away($request->getSchemeAndHttpHost() . '/pages/paymentSuccess.html');
+        
     }
 
     // Step 2b: If payment fails
-    public function paymentFailed()
+    public function paymentFailed(Request $request)
     {
-        return view('payment-failed');
+        $refNumber = $request->query('remarks');
+
+        // Optional: update DB if needed
+        if ($refNumber) {
+            FarmOrderModel::where('ref_number', $refNumber)
+                ->update(['order_status' => 'Failed']);
+        }
+
+        return redirect()->away($request->getSchemeAndHttpHost() . '/pages/paymentSuccess.html');
     }
+    
 }

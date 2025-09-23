@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   btn.addEventListener("click", () => {
-    window.location.href = "./RoomReser.html"; // go to another page
+    window.location.href = "./pages/RoomReser.html"; // go to another page
   });
 });
 
