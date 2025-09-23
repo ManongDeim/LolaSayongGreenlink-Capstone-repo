@@ -286,8 +286,8 @@ function getPrice(itemName) {
 
   document.addEventListener("DOMContentLoaded", () => {
   const navButtons = {
-    roomReser: "./RoomReservation.html",
-    eventReser: "./EventReservation.html",
+    roomReser: "./roomReser.html",
+    eventReser: "./eventReser.html",
     foodOrder: "./FoodOrders.html",
     farmOrder: "./FarmOrders.html",
   };
