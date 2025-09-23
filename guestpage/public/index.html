@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./output.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <!-- Flatpickr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+  <!-- Tab Icon -->
+  <link rel="icon" type="image/png" href="./src/Pictures/LogoLolasayong2.png">
+
+  <title>Lola Sayong: GreenLink</title>
 </head>
 <body class="bg-white">
 <!-- Header -->
@@ -12,21 +19,23 @@
 
   <!-- Left: Logo + Navigation -->
   <div class="flex items-center gap-10">
+
     <!-- Logo -->
-    <img src="./src/Pictures/LogoLolasayong2.png" alt="Logo" 
-         class="h-20 w-auto object-contain">
+     <a href="./index.html">
+    <img src="./src/Pictures/LogoLolasayong2.png" alt="Logo" class="h-20 w-auto object-contain">
+      </a>
 
     <!-- Navigation -->
-    <nav class="flex gap-8 text-lg font-medium">
-      <a href="./index.html" class="text-gray-700 hover:text-teal-600 transition">Homee</a>
-      <button onclick="openReserModal()" class="text-gray-700 hover:text-teal-600 transition">
+    <nav class="flex gap-6 text-lg font-medium">
+      <a href="./index.html" class="text-gray-700 hover:text-teal-600 transition">Home</a>
+      <button onclick="openReserModal()" class="text-gray-700 hover:text-teal-600 transition bg-auto">
         Booking
       </button>
       <button onclick="openOrderModal()" class="text-gray-700 hover:text-teal-600 transition">
         Order
       </button>
     </nav>
-  </div>
+  </div> 
 
   <!-- Right: Google Login -->
   <div class="flex items-center">
@@ -51,22 +60,24 @@
     <p class="text-white text-lg md:text-xl font-light drop-shadow-md">where every wave invites adventure, every stay supports the community,</p>
     <p class="text-white text-lg md:text-xl font-light drop-shadow-md">and every moment brings you closer to nature, simplicity, and home.</p>
  
-      <!--Calendar-->
-      <div class="rounded-lg p-6 flex flex-wrap gap-4 justify-center shadow-lg mt-6">
+      <!--Calendar with Date Range Picker-->
+      <div class="backdrop-blur-md bg-transparent/40 rounded-xl p-6 flex flex-wrap gap-4 justify-center shadow-2xl mt-6">
         <div class="flex flex-col">
-          <label class="text-white font-medium mb-1">Check-In</label>
-          <input type="date" class="bg-white border px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+          <label class="text-gray-800 font-medium mb-1">Check-In</label>
+          <input id="checkIn" type="text" readonly placeholder="Select date" 
+                 class="bg-white border px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
         </div>
 
         <div class="flex flex-col">
-          <label class="text-white font-medium mb-1">Check-Out</label>
-          <input type="date" class="bg-white border px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
+          <label class="text-gray-800 font-medium mb-1">Check-Out</label>
+          <input id="checkOut" type="text" readonly placeholder="Select date" 
+                 class="bg-white border px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
         </div>
+
         <div class="flex flex-col">
-          <label class="text-white font-medium mb-1">Reservation Type</label>
+          <label class="text-gray-800 font-medium mb-1">Reservation</label>
           <select class="bg-white border px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500">
             <option>Room Reservation</option>
-            <option>Cottage Reservation</option>
             <option>Event Reservation</option>
           </select>
       </div>
@@ -122,14 +133,17 @@
     <div>
       <h3 class="text-lg font-semibold mb-3">About Us</h3>
       <p class="text-sm leading-relaxed">
-        We provide the perfect venue for your weddings, birthdays, team buildings, and family gatherings.
+        Lola Sayong Eco Surf-Farm is a community-driven space in Sorsogon where nature,
+  culture, and people come together. We offer eco-friendly venues for celebrations,
+  farm-to-table dining, event booking, and room reservations — giving you a relaxing
+  escape by the sea.
       </p>
     </div>
     <div>
       <h3 class="text-lg font-semibold mb-3">Contact</h3>
-      <p class="text-sm">📍 Brgy. XYZ, City</p>
-      <p class="text-sm">📞 +63 912 345 6789</p>
-      <p class="text-sm">✉️ info@lolasayong.com</p>
+      <p class="text-sm">📍 Brgy. Buenavista, Gubat, Sorsogon</p>
+      <p class="text-sm">📞 +63 939 907 6136</p>
+      <p class="text-sm">✉️ lolasayong.org@gmail.com</p>
     </div>
     <div>
       <h3 class="text-lg font-semibold mb-3">Follow Us</h3>
@@ -145,17 +159,14 @@
 </footer>
 
   <!-- Reservation Pop-Up -->
-  <div id="reservationModal" class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
-    <!-- Pop-Up Content -->
+  <div id="reservationModal" class="fixed inset-0 bg-white/30 backdrop-blur-md items-center flex justify-center hidden z-50">   
+  <!-- Pop-Up Content -->
     <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 animate-fade-in">
       <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Choose Reservation Type</h2>
 
       <div class="grid gap-4">
         <button id="roomReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
           Room Reservation
-        </button>
-        <button class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
-          Cottage Reservation
         </button>
         <button id="eventReser" class="bg-teal-700 hover:bg-teal-800 text-white font-medium py-3 px-4 rounded-xl shadow-md transition duration-300">
           Event Reservation
@@ -170,7 +181,7 @@
   </div>
 
   <!-- Order Pop-Up -->
-  <div id="orderModal" class="fixed inset-0 bg-black bg-opacity-50 items-center flex justify-center hidden z-50">
+  <div id="orderModal" class="fixed inset-0 bg-white/30 backdrop-blur-md items-center flex justify-center hidden z-50">    
     <!-- Pop-Up Content -->
     <div class="bg-white rounded-2xl shadow-2xl p-6 w-96 animate-fade-in">
       <h2 class="text-xl font-semibold text-center text-gray-800 mb-6">Choose Order Type</h2>
@@ -191,7 +202,7 @@
     </div>
   </div>
 
-  
+  <!-- Link to your JS file -->
   <script src="./scripts/indexScript.js"></script>
 
   <style>
