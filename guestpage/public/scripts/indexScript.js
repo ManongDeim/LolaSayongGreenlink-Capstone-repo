@@ -101,7 +101,8 @@ document.addEventListener("keydown", function (event) {
     window.location.href = "./pages/FarmOrders.html"; // go to another page
   });
 });
-// Load Flatpickr dynamically
+
+// --- Flatpickr  ---
 const flatpickrScript = document.createElement("script");
 flatpickrScript.src = "https://cdn.jsdelivr.net/npm/flatpickr";
 document.head.appendChild(flatpickrScript);
@@ -110,22 +111,31 @@ flatpickrScript.onload = () => {
   const checkInInput = document.getElementById("checkIn");
   const checkOutInput = document.getElementById("checkOut");
 
-  // Attach flatpickr to Check-In (will control both)
+  // Single Flatpickr controlling both fields
   const picker = flatpickr(checkInInput, {
     mode: "range",
     dateFormat: "Y-m-d",
     minDate: "today",
+    showMonths: 2, 
     onClose: function (selectedDates) {
+      if (selectedDates.length === 1) {
+        // Auto set checkout as the next day
+        const nextDay = new Date(selectedDates[0]);
+        nextDay.setDate(nextDay.getDate() + 1);
+        picker.setDate([selectedDates[0], nextDay], true);
+        checkInInput.value = selectedDates[0].toLocaleDateString();
+        checkOutInput.value = nextDay.toLocaleDateString();
+      }
       if (selectedDates.length === 2) {
+        // Update inputs
         checkInInput.value = selectedDates[0].toLocaleDateString();
         checkOutInput.value = selectedDates[1].toLocaleDateString();
       }
     }
   });
 
-  // Make Check-Out open the same calendar
+  // Make Check-Out input also open the same calendar
   checkOutInput.addEventListener("click", () => picker.open());
 };
-
 
 
